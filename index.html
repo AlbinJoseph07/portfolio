@@ -3,189 +3,190 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Albin | Full Stack Developer Portfolio</title>
+    <title>Albin | Software Developer Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #6366f1; /* Modern Indigo */
-            --bg-dark: #0f172a;
-            --card-bg: #1e293b;
-            --text-main: #f8fafc;
-            --text-dim: #94a3b8;
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg: #030712;
+            --card: #111827;
+            --text-main: #f9fafb;
+            --text-muted: #9ca3af;
+            --border: rgba(255, 255, 255, 0.1);
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            font-family: 'Plus+Jakarta+Sans', sans-serif;
-            background-color: var(--bg-dark);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
             color: var(--text-main);
-            line-height: 1.6;
+            line-height: 1.7;
+            overflow-x: hidden;
         }
 
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 2rem; }
 
         /* Navigation */
         nav {
-            padding: 2rem 0;
+            padding: 1.5rem 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid var(--border);
         }
+        .logo { font-weight: 800; font-size: 1.25rem; letter-spacing: -0.5px; color: var(--primary); }
 
-        .logo { font-weight: 800; font-size: 1.5rem; letter-spacing: -1px; }
+        /* Hero */
+        header { padding: 5rem 0 3rem; text-align: left; max-width: 700px; }
+        h1 { font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 1rem; }
+        .highlight { color: var(--primary); }
+        .tagline { font-size: 1.25rem; color: var(--text-muted); margin-bottom: 2rem; }
 
-        /* Hero Section */
-        header {
-            padding: 80px 0;
-            text-align: center;
-        }
+        /* Section Styling */
+        section { padding: 4rem 0; }
+        h2 { font-size: 1.75rem; margin-bottom: 2rem; display: flex; align-items: center; gap: 10px; }
+        h2::after { content: ""; height: 1px; flex-grow: 1; background: var(--border); }
 
-        h1 { font-size: 3.5rem; margin-bottom: 10px; font-weight: 800; }
-        
-        .badge {
-            background: rgba(99, 102, 241, 0.2);
-            color: var(--primary);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        /* Sections */
-        section { padding: 60px 0; }
-        h2 { font-size: 2rem; margin-bottom: 30px; border-left: 4px solid var(--primary); padding-left: 15px; }
-
-        /* Skills Card Grid */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
-        }
-
-        .skill-card {
-            background: var(--card-bg);
-            padding: 20px;
+        /* Skills Grid */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1rem; }
+        .skill-item {
+            background: var(--card);
+            padding: 1rem;
             border-radius: 12px;
+            border: 1px solid var(--border);
             text-align: center;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .skill-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-        }
-
-        /* Professional Contact Form */
-        .contact-container {
-            background: var(--card-bg);
-            padding: 40px;
-            border-radius: 16px;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .form-group { margin-bottom: 20px; }
-        
-        label { display: block; margin-bottom: 8px; color: var(--text-dim); font-size: 0.9rem; }
-
-        input, textarea {
-            width: 100%;
-            padding: 12px;
-            background: #0f172a;
-            border: 1px solid #334155;
-            border-radius: 8px;
-            color: white;
-            font-family: inherit;
-        }
-
-        input:focus, textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-
-        .btn-submit {
-            background: var(--primary);
-            color: white;
-            padding: 14px 28px;
-            border: none;
-            border-radius: 8px;
-            width: 100%;
             font-weight: 600;
-            cursor: pointer;
-            transition: opacity 0.2s;
+            transition: all 0.3s ease;
         }
+        .skill-item:hover { border-color: var(--primary); transform: translateY(-3px); }
 
-        .btn-submit:hover { opacity: 0.9; }
+        /* Contact Section */
+        .contact-wrapper {
+            background: var(--card);
+            padding: 3rem;
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 3rem;
+        }
+        @media (max-width: 768px) { .contact-wrapper { grid-template-columns: 1fr; padding: 2rem; } }
 
-        footer { text-align: center; padding: 40px; color: var(--text-dim); font-size: 0.8rem; }
+        .form-group { margin-bottom: 1.5rem; }
+        label { display: block; font-size: 0.875rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+        input, textarea {
+            width: 100%; padding: 1rem; background: #1f2937; border: 1px solid var(--border);
+            border-radius: 12px; color: white; font-family: inherit; transition: border-color 0.2s;
+        }
+        input:focus, textarea:focus { outline: none; border-color: var(--primary); }
+
+        button {
+            background: var(--primary); color: white; padding: 1rem 2rem; border: none;
+            border-radius: 12px; font-weight: 700; cursor: pointer; width: 100%; transition: background 0.2s;
+        }
+        button:hover { background: var(--primary-hover); }
+
+        /* Notification Toast */
+        #toast {
+            position: fixed; bottom: 2rem; right: 2rem; padding: 1rem 2rem;
+            background: #10b981; color: white; border-radius: 12px;
+            font-weight: 600; transform: translateY(100px); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        #toast.show { transform: translateY(0); }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <nav>
-            <div class="logo">ALBIN.DEV</div>
-        </nav>
+        <nav><div class="logo">ALBIN_</div></nav>
 
         <header>
-            <span class="badge">SEC Course Project</span>
-            <h1>Hi, I'm Albin</h1>
-            <p style="color: var(--text-dim); font-size: 1.2rem;">BCA Student | Full Stack Web Learner</p>
+            <h1>Building <span class="highlight">digital</span> experiences that matter.</h1>
+            <p class="tagline">BCA Student | Full Stack Enthusiast | Python & Web Learner.</p>
         </header>
 
-        <section id="about">
-            <h2>About Me</h2>
-            <p style="max-width: 700px; color: var(--text-dim);">
-                I am a dedicated BCA student specializing in building clean, functional, and user-centric web applications. 
-                My focus is on mastering the bridge between elegant frontend designs and robust backend systems using modern technologies.
-            </p>
-        </section>
-
         <section id="skills">
-            <h2>Technical Skills</h2>
+            <h2>Core Competencies</h2>
             <div class="skills-grid">
-                <div class="skill-card">HTML5</div>
-                <div class="skill-card">CSS3</div>
-                <div class="skill-card">JavaScript</div>
-                <div class="skill-card">PHP</div>
-                <div class="skill-card">MySQL</div>
-                <div class="skill-card">Python (NumPy)</div>
+                <div class="skill-item">Frontend (HTML/CSS)</div>
+                <div class="skill-item">JavaScript</div>
+                <div class="skill-item">PHP / MySQL</div>
+                <div class="skill-item">Python (NumPy)</div>
             </div>
         </section>
 
         <section id="contact">
-            <div class="contact-container">
-                <h2 style="border:none; padding:0; text-align:center; margin-bottom:10px;">Get In Touch</h2>
-                <p style="text-align:center; color:var(--text-dim); margin-bottom:30px;">Have a project or a question? Send me a message!</p>
+            <div class="contact-wrapper">
+                <div>
+                    <h2>Let's Connect</h2>
+                    <p style="color: var(--text-muted);">Have a question or a project idea? Drop me a message and I'll get back to you within 24 hours.</p>
+                </div>
                 
-               <form action="https://formsubmit.co/albinjo2025@gmail.com" method="POST">
-    <input type="hidden" name="_next" value="https://albinjoseph07.github.io/portfolio/thankyou.html">
-    
-    <input type="hidden" name="_captcha" value="false">
-
-    <input type="text" name="name" placeholder="Name" required>
-    <input type="email" name="email" placeholder="Email" required>
-    <textarea name="message" placeholder="Message" required></textarea>
-    <button type="submit">Send</button>
-</form>
+                <form id="portfolio-form">
+                    <input type="hidden" name="_url" value="https://formsubmit.co/ajax/your-email@gmail.com">
+                    
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" name="name" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" name="email" placeholder="email@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea name="message" rows="4" placeholder="How can I help?" required></textarea>
+                    </div>
+                    
+                    <button type="submit" id="submit-btn">Send Message</button>
+                </form>
             </div>
         </section>
 
-        <footer>
-            &copy; 2026 Albin Joseph. Built with HTML, CSS, and Passion.
+        <footer style="padding: 4rem 0; text-align: center; color: var(--text-muted); font-size: 0.875rem;">
+            &copy; 2026 Albin Joseph. Built with passion and code.
         </footer>
     </div>
 
+    <div id="toast">✅ Message Sent Successfully!</div>
+
+    <script>
+        const form = document.getElementById('portfolio-form');
+        const btn = document.getElementById('submit-btn');
+        const toast = document.getElementById('toast');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            btn.innerText = "Sending...";
+            btn.disabled = true;
+
+            const formData = new FormData(this);
+            const endpoint = this.querySelector('input[name="_url"]').value;
+
+            fetch(endpoint, {
+                method: "POST",
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            })
+            .then(response => {
+                if (response.ok) {
+                    form.reset();
+                    btn.innerText = "Send Message";
+                    btn.disabled = false;
+                    
+                    // Show custom Toast notification
+                    toast.classList.add('show');
+                    setTimeout(() => toast.classList.remove('show'), 4000);
+                } else {
+                    alert("Submission failed. Check your FormSubmit activation.");
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                btn.disabled = false;
+            });
+        });
+    </script>
 </body>
 </html>
-
