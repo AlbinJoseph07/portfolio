@@ -1,108 +1,19 @@
 <style>
-    :root {
-        --primary: #000000;         /* Solid Black */
-        --primary-hover: #333333;   /* Dark Grey */
-        --bg: #ffffff;              /* Pure White */
-        --bg-off: #f9f9f9;          /* Off-White */
-        --card: #ffffff;            /* White Cards */
-        --text-main: #000000;       /* Black Text */
-        --text-muted: #666666;      /* Grey Text */
-        --border: #e5e5e5;          /* Light Grey Border */
-    }
+:root {
+    --bg: #ffffff;              /* White */
+    --bg-off: #f4f4f4;          /* Off-White */
+    --text-main: #000000;       /* Black Text */
+    --primary: #000000;         /* Black Buttons */
+}
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    
-    body {
-        font-family: 'Plus Jakarta Sans', sans-serif;
-        background-color: var(--bg);
-        color: var(--text-main);
-        line-height: 1.7;
-        overflow-x: hidden;
-    }
+body {
+    background-color: var(--bg);
+    color: var(--text-main);
+}
 
-    .container { max-width: 1000px; margin: 0 auto; padding: 0 2rem; }
-
-    /* Navigation */
-    nav {
-        padding: 1.5rem 0;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-bottom: 1px solid var(--border);
-    }
-    .logo { font-weight: 800; font-size: 1.25rem; letter-spacing: -0.5px; color: var(--text-main); }
-
-    /* Hero */
-    header { padding: 8rem 0 5rem; text-align: left; max-width: 800px; }
-    h1 { 
-        font-size: 4rem; 
-        font-weight: 800; 
-        line-height: 1.1; 
-        margin-bottom: 1.5rem; 
-        letter-spacing: -2px;
-    }
-    .highlight { color: #666666; font-weight: 400; } /* Subtle gray for contrast */
-    .tagline { font-size: 1.5rem; color: var(--text-muted); margin-bottom: 2rem; }
-
-    /* Section Styling */
-    section { padding: 5rem 0; }
-    h2 { font-size: 1.5rem; margin-bottom: 2rem; display: flex; align-items: center; gap: 15px; text-transform: uppercase; letter-spacing: 1px; }
-    h2::after { content: ""; height: 1px; flex-grow: 1; background: var(--border); }
-
-    /* Skills Grid */
-    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem; }
-    .skill-item {
-        background: var(--bg-off);
-        padding: 1.5rem;
-        border-radius: 4px; /* Sharper corners for a cleaner look */
-        border: 1px solid var(--border);
-        text-align: left;
-        font-weight: 600;
-        transition: all 0.3s ease;
-    }
-    .skill-item:hover { background: #000; color: #fff; transform: translateY(-2px); }
-
-    /* Contact Section */
-    .contact-wrapper {
-        background: var(--bg-off);
-        padding: 4rem;
-        border-radius: 0px; /* Square edges look more premium in minimalist design */
-        border: 1px solid var(--border);
-        display: grid;
-        grid-template-columns: 1fr 1.2fr;
-        gap: 3rem;
-    }
-    @media (max-width: 768px) { .contact-wrapper { grid-template-columns: 1fr; padding: 2rem; } }
-
-    .form-group { margin-bottom: 1.5rem; }
-    label { display: block; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: var(--text-main); margin-bottom: 0.5rem; }
-    
-    input, textarea {
-        width: 100%; padding: 1rem; background: var(--bg); border: 1px solid var(--border);
-        border-radius: 0px; color: black; font-family: inherit; transition: border-color 0.2s;
-    }
-    input:focus, textarea:focus { outline: none; border-color: var(--text-main); }
-
-    button {
-        background: var(--primary); 
-        color: white; 
-        padding: 1.25rem 2rem; 
-        border: none;
-        border-radius: 0px; 
-        font-weight: 700; 
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        cursor: pointer; 
-        width: 100%; 
-        transition: 0.3s;
-    }
-    button:hover { background: #333; }
-
-    /* Notification Toast */
-    #toast {
-        position: fixed; bottom: 2rem; right: 2rem; padding: 1rem 2rem;
-        background: #000; color: white; border-radius: 0px;
-        font-weight: 600; transform: translateY(100px); transition: transform 0.4s ease;
-    }
-    #toast.show { transform: translateY(0); }
-</style>
+/* Make your buttons sharp black */
+button, .skill-item:hover {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    border: none;
+}
