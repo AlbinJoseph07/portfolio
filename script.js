@@ -1,60 +1,62 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const contactForm = document.getElementById('contact-form');
-    const formStatus = document.getElementById('form-status');
-    const submitBtn = document.getElementById('submit-btn');
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
 
-    if (contactForm) {
-        contactForm.addEventListener('submit', async function(e) {
-            e.preventDefault(); 
+const app = express();
 
-            // Show loading state
-            const originalBtnText = submitBtn.innerText;
-            submitBtn.innerText = 'Sending...';
-            submitBtn.disabled = true;
-            formStatus.style.display = 'none';
-            formStatus.className = 'status'; // Reset classes
+// Middlewares
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-            const formData = new FormData(this);
-            const actionInput = this.querySelector('input[name="_url"]');
-            
-            if (!actionInput || !actionInput.value || actionInput.value === "YOUR_API_ENDPOINT_HERE") {
-                formStatus.innerText = "Error: Please configure your API endpoint in the HTML.";
-                formStatus.classList.add('error');
-                formStatus.style.display = 'block';
-                resetButton(submitBtn, originalBtnText);
-                return;
-            }
+// MongoDB Atlas connection
+const dbURI = "mongodb+srv://albinjo2025_db_user:Albin%23123%40@cluster0.3blcord.mongodb.net/portfolioDB?retryWrites=true&w=majority";
 
-            try {
-                const response = await fetch(actionInput.value, {
-                    method: "POST",
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
+mongoose
+  .connect(dbURI)
+  .then(() => console.log("MongoDB Connected ✅"))
+  .catch((err) => console.log("MongoDB Error ❌", err));
 
-                if (response.ok) {
-                    contactForm.reset(); 
-                    formStatus.innerText = "Message sent successfully!";
-                    formStatus.classList.add('success');
-                    formStatus.style.display = 'block'; 
-                } else {
-                    throw new Error("Network response was not ok");
-                }
-            } catch (error) {
-                console.error("Error:", error);
-                formStatus.innerText = "Oops! There was a problem submitting your form.";
-                formStatus.classList.add('error');
-                formStatus.style.display = 'block';
-            } finally {
-                resetButton(submitBtn, originalBtnText);
-            }
-        });
-    }
+// Schema
+const MessageSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  message: String,
+  createdAt: {
+    type: Date,
+    default: Date.now
+  }
+});
 
-    function resetButton(btn, text) {
-        btn.innerText = text;
-        btn.disabled = false;
-    }
+const Message = mongoose.model("Message", MessageSchema);
+
+// API route to receive form data
+app.post("/api/contact", async (req, res) => {
+  try {
+    const newMessage = new Message({
+      name: req.body.name,
+      email: req.body.email,
+      message: req.body.message
+    });
+
+    await newMessage.save();
+
+    res.status(200).json({ success: true, message: "Saved to MongoDB" });
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false });
+  }
+});
+
+// Test route (to check backend is running)
+app.get("/", (req, res) => {
+  res.send("Backend is running ✅");
+});
+
+// Start server
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
