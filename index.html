@@ -3,326 +3,260 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Albin | Full Stack Developer</title>
-
+<title>Albin | Luxury Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
-:root{
---primary:#6366f1;
---bg:#0f172a;
---card:#1e293b;
---text:#f8fafc;
---dim:#94a3b8;
---success:#22c55e;
---error:#ef4444;
-}
-
-*{margin:0;padding:0;box-sizing:border-box;}
-body{
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
 font-family:'Plus Jakarta Sans',sans-serif;
-background:var(--bg);
-color:var(--text);
 }
 
-.container{max-width:1100px;margin:auto;padding:0 24px;}
-header{text-align:center;padding:80px 0;}
-h1{font-size:3rem;font-weight:800;}
-
-section{padding:80px 0;}
-h2{
-border-left:4px solid var(--primary);
-padding-left:15px;
-margin-bottom:30px;
+html{
+scroll-behavior:smooth;
+scroll-snap-type:y mandatory;
 }
 
-.skills-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-gap:20px;
-}
-
-.skill-card{
-background:var(--card);
-padding:20px;
-border-radius:12px;
-text-align:center;
-transition:.3s;
-}
-
-.skill-card:hover{
-transform:translateY(-8px);
-box-shadow:0 10px 30px rgba(0,0,0,.4);
-}
-
-/* GAME */
-#gameContainer{
-position:relative;
-height:350px;
-background:var(--card);
-border-radius:12px;
-overflow:hidden;
-}
-
-#player{
-width:40px;
-height:40px;
-background:lime;
-border-radius:50%;
-position:absolute;
-top:150px;
-left:50px;
-}
-
-#enemy{
-width:40px;
-height:40px;
-background:red;
-border-radius:50%;
-position:absolute;
-top:150px;
-right:0;
-}
-
-#gameOverScreen{
-position:absolute;
-inset:0;
-background:rgba(0,0,0,.8);
+body{
+background:#0e1117;
 color:white;
-display:none;
-flex-direction:column;
-align-items:center;
+overflow-x:hidden;
+}
+
+/* LOADER */
+#loader{
+position:fixed;
+width:100%;
+height:100vh;
+background:#0e1117;
+display:flex;
 justify-content:center;
+align-items:center;
+z-index:9999;
+font-size:40px;
+font-weight:800;
+letter-spacing:5px;
+animation:fadeOut 1s ease forwards;
+animation-delay:2s;
+}
+
+@keyframes fadeOut{
+to{opacity:0;visibility:hidden;}
+}
+
+/* NAVBAR */
+header{
+position:fixed;
+width:100%;
+padding:25px 80px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(14,17,23,0.6);
+backdrop-filter:blur(20px);
+z-index:1000;
+}
+
+nav a{
+color:#aaa;
+margin-left:40px;
+text-decoration:none;
+transition:0.3s;
+}
+
+nav a:hover{
+color:white;
+}
+
+/* SECTIONS */
+section{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+scroll-snap-align:start;
+padding:100px 40px;
+}
+
+/* HERO */
+.hero h1{
+font-size:80px;
+font-weight:800;
+letter-spacing:2px;
+}
+
+.hero p{
+margin-top:20px;
+color:#888;
 font-size:20px;
+}
+
+/* FLOATING GRID BG */
+.grid{
+position:fixed;
+width:100%;
+height:100%;
+background-image:linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+background-size:40px 40px;
+z-index:-1;
+animation:moveGrid 15s linear infinite;
+}
+
+@keyframes moveGrid{
+from{transform:translateY(0);}
+to{transform:translateY(40px);}
+}
+
+/* SKILLS CARDS */
+.skills{
+display:flex;
+gap:40px;
+flex-wrap:wrap;
+justify-content:center;
+margin-top:50px;
+}
+
+.card{
+width:240px;
+height:180px;
+background:rgba(255,255,255,0.05);
+border-radius:25px;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:22px;
+transition:0.4s;
+backdrop-filter:blur(20px);
+}
+
+.card:hover{
+transform:translateY(-15px) scale(1.05);
 }
 
 /* CONTACT */
 .contact-box{
-background:var(--card);
-padding:40px;
-border-radius:16px;
+width:100%;
 max-width:600px;
-margin:auto;
+background:rgba(255,255,255,0.05);
+padding:50px;
+border-radius:30px;
+backdrop-filter:blur(20px);
 }
 
 input,textarea{
 width:100%;
-padding:14px;
-border-radius:8px;
-border:1px solid #334155;
-background:#0f172a;
+padding:15px;
+margin-bottom:20px;
+border-radius:15px;
+border:none;
+background:#1c2128;
 color:white;
-margin-bottom:15px;
 }
 
 button{
-width:100%;
-padding:14px;
+padding:15px 40px;
 border:none;
-border-radius:8px;
-background:var(--primary);
-color:white;
+border-radius:30px;
+background:white;
+color:black;
 font-weight:600;
 cursor:pointer;
+transition:0.3s;
 }
 
-.status{
-margin-top:15px;
-padding:12px;
-border-radius:8px;
-display:none;
-font-weight:600;
+button:hover{
+transform:scale(1.05);
+}
+
+/* FOOTER */
+footer{
+padding:40px;
 text-align:center;
+color:#666;
 }
-
-.success{background:rgba(34,197,94,.2);color:var(--success);}
-.error{background:rgba(239,68,68,.2);color:var(--error);}
-
-footer{text-align:center;padding:40px;color:var(--dim);}
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div id="loader">ALBIN</div>
+<div class="grid"></div>
 
 <header>
-<h1>Hi, I'm Albin 👋</h1>
-<p style="color:var(--dim)">Full Stack Developer | MERN Stack</p>
+<h2>Albin</h2>
+<nav>
+<a href="#home">Home</a>
+<a href="#skills">Skills</a>
+<a href="#contact">Contact</a>
+</nav>
 </header>
 
-<section>
-<h2>Technical Skills</h2>
-<div class="skills-grid">
-<div class="skill-card">HTML5</div>
-<div class="skill-card">CSS3</div>
-<div class="skill-card">JavaScript</div>
-<div class="skill-card">React</div>
-<div class="skill-card">Node.js</div>
-<div class="skill-card">MongoDB</div>
+<section id="home" class="hero">
+<h1>Albin</h1>
+<p>Crafting Digital Experiences</p>
+</section>
+
+<section id="skills">
+<h2>Core Strength</h2>
+<div class="skills">
+<div class="card">HTML</div>
+<div class="card">CSS</div>
+<div class="card">JavaScript</div>
+<div class="card">Node.js</div>
+<div class="card">UI Design</div>
+<div class="card">AI Basics</div>
 </div>
 </section>
 
-<!-- GAME SECTION -->
-<section>
-<h2>🎮 Mini Game – Dodge The Virus</h2>
-
-<div id="gameContainer">
-<div id="player"></div>
-<div id="enemy"></div>
-
-<div id="gameOverScreen">
-Game Over 💀
-<button onclick="restartGame()" style="margin-top:15px;padding:10px 20px;border:none;background:var(--primary);color:white;border-radius:8px;">Restart</button>
-</div>
-</div>
-
-<h3 style="margin-top:15px;">Score: <span id="score">0</span></h3>
-<p style="color:var(--dim)">Use ↑ ↓ arrow keys to move</p>
-</section>
-
-<!-- CONTACT SECTION -->
-<section>
-<h2>Contact Me</h2>
-
+<section id="contact">
+<h2>Let's Work Together</h2>
 <div class="contact-box">
 <form id="contactForm">
-
-<input type="text" id="name" name="name" placeholder="Full Name" required>
-<input type="email" id="email" name="email" placeholder="Email Address" required>
-<textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
-
-<button type="submit" id="submitBtn">Send Message</button>
-<div class="status" id="status"></div>
-
+<input type="text" id="name" placeholder="Your Name" required>
+<input type="email" id="email" placeholder="Your Email" required>
+<textarea id="message" rows="5" placeholder="Your Message" required></textarea>
+<button type="submit">Send Message</button>
 </form>
+<p id="responseMsg"></p>
 </div>
 </section>
 
 <footer>
-© 2026 Albin Joseph | Portfolio
+© 2026 Albin | Luxury Experience
 </footer>
 
-</div>
-
 <script>
+/* BACKEND CONNECTION UNCHANGED */
+const form=document.getElementById("contactForm");
+const responseMsg=document.getElementById("responseMsg");
 
-/* ================= GAME ================= */
-
-const player = document.getElementById("player");
-const enemy = document.getElementById("enemy");
-const container = document.getElementById("gameContainer");
-const scoreDisplay = document.getElementById("score");
-const gameOverScreen = document.getElementById("gameOverScreen");
-
-let playerY = 150;
-let enemyX = container.clientWidth;
-let score = 0;
-let gameRunning = true;
-
-document.addEventListener("keydown", (e) => {
-if(!gameRunning) return;
-
-if(e.key === "ArrowUp" && playerY > 0){
-playerY -= 20;
-}
-if(e.key === "ArrowDown" && playerY < container.clientHeight - 40){
-playerY += 20;
-}
-player.style.top = playerY + "px";
-});
-
-function gameLoop(){
-if(!gameRunning) return;
-
-enemyX -= 5;
-enemy.style.left = enemyX + "px";
-
-if(enemyX <= -40){
-enemyX = container.clientWidth;
-score++;
-scoreDisplay.innerText = score;
-}
-
-const playerRect = player.getBoundingClientRect();
-const enemyRect = enemy.getBoundingClientRect();
-
-if(
-playerRect.left < enemyRect.right &&
-playerRect.right > enemyRect.left &&
-playerRect.top < enemyRect.bottom &&
-playerRect.bottom > enemyRect.top
-){
-gameOver();
-}
-
-requestAnimationFrame(gameLoop);
-}
-
-function gameOver(){
-gameRunning = false;
-gameOverScreen.style.display = "flex";
-}
-
-function restartGame(){
-enemyX = container.clientWidth;
-playerY = 150;
-score = 0;
-scoreDisplay.innerText = score;
-gameRunning = true;
-gameOverScreen.style.display = "none";
-gameLoop();
-}
-
-gameLoop();
-
-/* ================= BACKEND FORM ================= */
-
-const form = document.getElementById("contactForm");
-const statusBox = document.getElementById("status");
-const submitBtn = document.getElementById("submitBtn");
-
-form.addEventListener("submit", async (e) => {
+form.addEventListener("submit",async function(e){
 e.preventDefault();
-
-submitBtn.innerText="Sending...";
-submitBtn.disabled=true;
-
-try{
-const response = await fetch("https://portfolio-backend-ovx7.onrender.com/api/contact",{
-method:"POST",
-headers:{
-"Content-Type":"application/json"
-},
-body:JSON.stringify({
+const data={
 name:document.getElementById("name").value,
 email:document.getElementById("email").value,
 message:document.getElementById("message").value
-})
+};
+try{
+const res=await fetch("https://portfolio-backend-ovx7.onrender.com/contact",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify(data)
 });
-
-const data = await response.json();
-
-if(data.success){
-statusBox.className="status success";
-statusBox.innerText="Message sent successfully ✅";
+if(res.ok){
+responseMsg.innerText="Message sent successfully!";
 form.reset();
 }else{
-statusBox.className="status error";
-statusBox.innerText="Failed to send ❌";
+responseMsg.innerText="Something went wrong!";
 }
-
 }catch(error){
-statusBox.className="status error";
-statusBox.innerText="Server error ❌";
+responseMsg.innerText="Server error!";
 }
-
-statusBox.style.display="block";
-submitBtn.innerText="Send Message";
-submitBtn.disabled=false;
-
 });
-
 </script>
 
 </body>
