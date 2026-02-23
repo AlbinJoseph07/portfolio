@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Albin | Luxury Portfolio</title>
+<title>Albin | Supreme Developer</title>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
@@ -12,179 +12,192 @@ margin:0;
 padding:0;
 box-sizing:border-box;
 font-family:'Plus Jakarta Sans',sans-serif;
-}
-
-html{
 scroll-behavior:smooth;
-scroll-snap-type:y mandatory;
 }
 
 body{
-background:#0e1117;
+background:#0a0f1c;
 color:white;
 overflow-x:hidden;
 }
 
-/* LOADER */
-#loader{
+/* Canvas Background */
+#particles{
 position:fixed;
+top:0;
+left:0;
 width:100%;
-height:100vh;
-background:#0e1117;
-display:flex;
-justify-content:center;
-align-items:center;
+height:100%;
+z-index:-1;
+}
+
+/* Scroll Progress */
+#progress{
+position:fixed;
+top:0;
+left:0;
+height:4px;
+background:linear-gradient(90deg,#3b82f6,#9333ea);
+width:0%;
 z-index:9999;
-font-size:40px;
-font-weight:800;
-letter-spacing:5px;
-animation:fadeOut 1s ease forwards;
-animation-delay:2s;
 }
 
-@keyframes fadeOut{
-to{opacity:0;visibility:hidden;}
-}
-
-/* NAVBAR */
+/* Navbar */
 header{
 position:fixed;
 width:100%;
-padding:25px 80px;
+padding:20px 60px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-background:rgba(14,17,23,0.6);
 backdrop-filter:blur(20px);
+background:rgba(10,15,28,0.6);
 z-index:1000;
 }
 
 nav a{
-color:#aaa;
-margin-left:40px;
+color:white;
+margin-left:30px;
 text-decoration:none;
+font-weight:500;
+position:relative;
+}
+
+nav a::after{
+content:"";
+position:absolute;
+width:0;
+height:2px;
+background:#3b82f6;
+left:0;
+bottom:-5px;
 transition:0.3s;
 }
 
-nav a:hover{
-color:white;
+nav a:hover::after{
+width:100%;
 }
 
-/* SECTIONS */
+/* Sections */
 section{
+padding:120px 60px;
 min-height:100vh;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-scroll-snap-align:start;
-padding:100px 40px;
+text-align:center;
 }
 
-/* HERO */
+/* Hero */
 .hero h1{
-font-size:80px;
+font-size:70px;
 font-weight:800;
-letter-spacing:2px;
+background:linear-gradient(90deg,#3b82f6,#9333ea,#3b82f6);
+background-size:200% auto;
+-webkit-background-clip:text;
+color:transparent;
+animation:gradientMove 4s linear infinite;
 }
 
-.hero p{
+@keyframes gradientMove{
+0%{background-position:0%}
+100%{background-position:200%}
+}
+
+.typing{
 margin-top:20px;
-color:#888;
-font-size:20px;
+font-size:22px;
+color:#94a3b8;
 }
 
-/* FLOATING GRID BG */
-.grid{
-position:fixed;
-width:100%;
-height:100%;
-background-image:linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-background-size:40px 40px;
-z-index:-1;
-animation:moveGrid 15s linear infinite;
-}
-
-@keyframes moveGrid{
-from{transform:translateY(0);}
-to{transform:translateY(40px);}
-}
-
-/* SKILLS CARDS */
+/* Skill Cards */
 .skills{
 display:flex;
-gap:40px;
 flex-wrap:wrap;
+gap:30px;
 justify-content:center;
-margin-top:50px;
+margin-top:40px;
 }
 
-.card{
-width:240px;
-height:180px;
+.skill-card{
+width:220px;
+padding:30px;
+border-radius:20px;
 background:rgba(255,255,255,0.05);
-border-radius:25px;
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:22px;
-transition:0.4s;
 backdrop-filter:blur(20px);
+transition:0.4s;
 }
 
-.card:hover{
+.skill-card:hover{
 transform:translateY(-15px) scale(1.05);
+box-shadow:0 25px 60px rgba(59,130,246,0.4);
 }
 
-/* CONTACT */
+/* Contact */
 .contact-box{
 width:100%;
 max-width:600px;
 background:rgba(255,255,255,0.05);
 padding:50px;
-border-radius:30px;
+border-radius:25px;
 backdrop-filter:blur(20px);
+box-shadow:0 25px 70px rgba(0,0,0,0.5);
 }
 
 input,textarea{
 width:100%;
 padding:15px;
 margin-bottom:20px;
-border-radius:15px;
+border-radius:12px;
 border:none;
-background:#1c2128;
+background:#1e293b;
 color:white;
 }
 
 button{
 padding:15px 40px;
 border:none;
-border-radius:30px;
-background:white;
-color:black;
+border-radius:12px;
+background:linear-gradient(90deg,#3b82f6,#9333ea);
+color:white;
 font-weight:600;
 cursor:pointer;
-transition:0.3s;
+position:relative;
+overflow:hidden;
 }
 
-button:hover{
-transform:scale(1.05);
+button::after{
+content:"";
+position:absolute;
+width:0;
+height:0;
+background:rgba(255,255,255,0.3);
+border-radius:50%;
+transform:translate(-50%,-50%);
+top:50%;
+left:50%;
+transition:width 0.4s,height 0.4s;
 }
 
-/* FOOTER */
+button:active::after{
+width:300px;
+height:300px;
+}
+
+/* Footer */
 footer{
-padding:40px;
 text-align:center;
-color:#666;
+padding:40px;
+color:#94a3b8;
 }
 </style>
 </head>
 
 <body>
 
-<div id="loader">ALBIN</div>
-<div class="grid"></div>
+<canvas id="particles"></canvas>
+<div id="progress"></div>
 
 <header>
 <h2>Albin</h2>
@@ -197,23 +210,23 @@ color:#666;
 
 <section id="home" class="hero">
 <h1>Albin</h1>
-<p>Crafting Digital Experiences</p>
+<div class="typing"></div>
 </section>
 
 <section id="skills">
-<h2>Core Strength</h2>
+<h2>My Skills</h2>
 <div class="skills">
-<div class="card">HTML</div>
-<div class="card">CSS</div>
-<div class="card">JavaScript</div>
-<div class="card">Node.js</div>
-<div class="card">UI Design</div>
-<div class="card">AI Basics</div>
+<div class="skill-card">HTML</div>
+<div class="skill-card">CSS</div>
+<div class="skill-card">JavaScript</div>
+<div class="skill-card">Node.js</div>
+<div class="skill-card">UI Design</div>
+<div class="skill-card">AI Basics</div>
 </div>
 </section>
 
 <section id="contact">
-<h2>Let's Work Together</h2>
+<h2>Contact Me</h2>
 <div class="contact-box">
 <form id="contactForm">
 <input type="text" id="name" placeholder="Your Name" required>
@@ -226,11 +239,67 @@ color:#666;
 </section>
 
 <footer>
-© 2026 Albin | Luxury Experience
+© 2026 Albin | Supreme Portfolio
 </footer>
 
 <script>
-/* BACKEND CONNECTION UNCHANGED */
+/* Scroll Progress */
+window.onscroll=function(){
+let winScroll=document.documentElement.scrollTop;
+let height=document.documentElement.scrollHeight-document.documentElement.clientHeight;
+document.getElementById("progress").style.width=(winScroll/height)*100+"%";
+};
+
+/* Typing */
+const words=["Full Stack Developer","BCA Student","AI Enthusiast"];
+let i=0,j=0,isDeleting=false;
+function type(){
+let current=words[i];
+if(!isDeleting){
+document.querySelector(".typing").textContent=current.slice(0,++j);
+if(j===current.length){isDeleting=true;setTimeout(type,1000);return;}
+}else{
+document.querySelector(".typing").textContent=current.slice(0,--j);
+if(j===0){isDeleting=false;i=(i+1)%words.length;}
+}
+setTimeout(type,100);
+}
+type();
+
+/* Particle Background */
+const canvas=document.getElementById("particles");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let particles=[];
+for(let i=0;i<100;i++){
+particles.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+r:Math.random()*2+1,
+dx:(Math.random()-0.5),
+dy:(Math.random()-0.5)
+});
+}
+
+function animate(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+particles.forEach(p=>{
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+ctx.fillStyle="#3b82f6";
+ctx.fill();
+p.x+=p.dx;
+p.y+=p.dy;
+if(p.x<0||p.x>canvas.width)p.dx*=-1;
+if(p.y<0||p.y>canvas.height)p.dy*=-1;
+});
+requestAnimationFrame(animate);
+}
+animate();
+
+/* BACKEND UNCHANGED */
 const form=document.getElementById("contactForm");
 const responseMsg=document.getElementById("responseMsg");
 
