@@ -1,304 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Albin | Developer Portfolio</title>
+    <meta charset="UTF-8">
+    <title>Albin | Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Plus Jakarta Sans', sans-serif;
-    scroll-behavior:smooth;
-}
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #0f172a;
+            color: white;
+        }
 
-body{
-    background:#0f172a;
-    color:white;
-    overflow-x:hidden;
-}
+        header {
+            padding: 20px 50px;
+            background: #111827;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-/* Animated Background */
-body::before{
-    content:"";
-    position:fixed;
-    width:200%;
-    height:200%;
-    background:radial-gradient(circle at 20% 30%, #3b82f6, transparent 40%),
-               radial-gradient(circle at 80% 70%, #9333ea, transparent 40%);
-    animation:moveBg 15s linear infinite alternate;
-    z-index:-1;
-    opacity:0.15;
-}
+        header h1 {
+            margin: 0;
+            font-weight: 800;
+        }
 
-@keyframes moveBg{
-    from{transform:translate(0,0);}
-    to{transform:translate(-200px,-150px);}
-}
+        nav a {
+            color: white;
+            margin-left: 20px;
+            text-decoration: none;
+            font-weight: 500;
+        }
 
-/* Navbar */
-header{
-    position:fixed;
-    width:100%;
-    padding:20px 60px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    backdrop-filter:blur(12px);
-    background:rgba(15,23,42,0.6);
-    z-index:1000;
-}
+        section {
+            padding: 60px 50px;
+        }
 
-header h1{
-    font-weight:800;
-    font-size:22px;
-    letter-spacing:1px;
-}
+        .hero {
+            text-align: center;
+            padding-top: 100px;
+        }
 
-nav a{
-    color:white;
-    margin-left:30px;
-    text-decoration:none;
-    font-weight:500;
-    position:relative;
-}
+        .hero h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
 
-nav a::after{
-    content:"";
-    position:absolute;
-    width:0%;
-    height:2px;
-    background:#3b82f6;
-    left:0;
-    bottom:-5px;
-    transition:0.3s;
-}
+        .hero p {
+            color: #94a3b8;
+            font-size: 18px;
+        }
 
-nav a:hover::after{
-    width:100%;
-}
+        .card {
+            background: #1e293b;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
 
-/* Sections */
-section{
-    padding:120px 60px;
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-}
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+        }
 
-.hero{
-    text-align:center;
-}
+        button {
+            padding: 12px 25px;
+            border-radius: 8px;
+            border: none;
+            background: #3b82f6;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+        }
 
-.hero h2{
-    font-size:55px;
-    font-weight:800;
-}
+        button:hover {
+            background: #2563eb;
+        }
 
-.hero span{
-    color:#3b82f6;
-}
-
-.typing{
-    font-size:22px;
-    margin-top:20px;
-    color:#94a3b8;
-}
-
-/* Glass Card */
-.glass{
-    background:rgba(255,255,255,0.05);
-    border-radius:20px;
-    padding:40px;
-    backdrop-filter:blur(20px);
-    box-shadow:0 20px 60px rgba(0,0,0,0.4);
-}
-
-/* Skills */
-.skill{
-    margin-bottom:25px;
-}
-
-.bar{
-    height:8px;
-    background:#1e293b;
-    border-radius:10px;
-    overflow:hidden;
-}
-
-.bar span{
-    display:block;
-    height:100%;
-    background:linear-gradient(90deg,#3b82f6,#9333ea);
-    width:0;
-    transition:2s;
-}
-
-/* Contact */
-input,textarea{
-    width:100%;
-    padding:14px;
-    margin-bottom:20px;
-    border-radius:10px;
-    border:none;
-    background:#1e293b;
-    color:white;
-}
-
-button{
-    padding:14px 35px;
-    border:none;
-    border-radius:10px;
-    background:linear-gradient(90deg,#3b82f6,#9333ea);
-    color:white;
-    font-weight:600;
-    cursor:pointer;
-    transition:0.3s;
-}
-
-button:hover{
-    transform:translateY(-3px);
-    box-shadow:0 10px 30px rgba(147,51,234,0.5);
-}
-
-footer{
-    text-align:center;
-    padding:30px;
-    background:#0f172a;
-    color:#94a3b8;
-}
-
-/* Scroll Animation */
-.hidden{
-    opacity:0;
-    transform:translateY(40px);
-    transition:1s;
-}
-
-.show{
-    opacity:1;
-    transform:translateY(0);
-}
-</style>
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #111827;
+            color: #94a3b8;
+        }
+    </style>
 </head>
-
 <body>
 
 <header>
     <h1>Albin</h1>
     <nav>
-        <a href="#home">Home</a>
-        <a href="#skills">Skills</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
         <a href="#contact">Contact</a>
     </nav>
 </header>
 
-<section id="home" class="hero hidden">
-    <h2>Hi, I'm <span>Albin</span> 👋</h2>
-    <div class="typing"></div>
+<section class="hero">
+    <h2>Hi, I'm Albin 👋</h2>
+    <p>Aspiring Full Stack Developer | BCA Student</p>
 </section>
 
-<section id="skills" class="hidden">
-    <h2>My Skills</h2>
-    <div class="glass">
-        <div class="skill">
-            <p>HTML</p>
-            <div class="bar"><span style="width:90%"></span></div>
-        </div>
-        <div class="skill">
-            <p>CSS</p>
-            <div class="bar"><span style="width:85%"></span></div>
-        </div>
-        <div class="skill">
-            <p>JavaScript</p>
-            <div class="bar"><span style="width:75%"></span></div>
-        </div>
-        <div class="skill">
-            <p>Node.js</p>
-            <div class="bar"><span style="width:70%"></span></div>
-        </div>
+<section id="about">
+    <h2>About Me</h2>
+    <div class="card">
+        <p>
+            I am a passionate BCA student who loves building websites,
+            learning backend development, and exploring AI/ML.
+        </p>
     </div>
 </section>
 
-<section id="contact" class="hidden">
+<section id="projects">
+    <h2>Projects</h2>
+    <div class="card">
+        <h3>Portfolio Backend</h3>
+        <p>Node.js + Express backend deployed on Render.</p>
+    </div>
+</section>
+
+<section id="contact">
     <h2>Contact Me</h2>
-    <div class="glass">
+
+    <div class="card">
         <form id="contactForm">
             <input type="text" id="name" placeholder="Your Name" required>
             <input type="email" id="email" placeholder="Your Email" required>
             <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
             <button type="submit">Send Message</button>
         </form>
+
         <p id="responseMsg"></p>
     </div>
 </section>
 
 <footer>
-    © 2026 Albin | Premium Developer Portfolio
+    © 2026 Albin | All Rights Reserved
 </footer>
 
 <script>
-/* Typing Effect */
-const words = ["Full Stack Developer","BCA Student","AI Enthusiast"];
-let i=0, j=0, currentWord="", isDeleting=false;
-function type(){
-    currentWord = words[i];
-    if(!isDeleting){
-        document.querySelector(".typing").textContent = currentWord.slice(0,++j);
-        if(j===currentWord.length){ isDeleting=true; setTimeout(type,1000); return;}
-    } else {
-        document.querySelector(".typing").textContent = currentWord.slice(0,--j);
-        if(j===0){ isDeleting=false; i=(i+1)%words.length;}
-    }
-    setTimeout(type,100);
-}
-type();
+    const form = document.getElementById("contactForm");
+    const responseMsg = document.getElementById("responseMsg");
 
-/* Scroll Reveal */
-const observer = new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{
-        if(entry.isIntersecting){
-            entry.target.classList.add("show");
+    form.addEventListener("submit", async function(e) {
+        e.preventDefault();
+
+        const data = {
+            name: document.getElementById("name").value,
+            email: document.getElementById("email").value,
+            message: document.getElementById("message").value
+        };
+
+        try {
+            const res = await fetch("https://portfolio-backend-ovx7.onrender.com/contact", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            });
+
+            const result = await res.json();
+
+            if (res.ok) {
+                responseMsg.innerText = "Message sent successfully!";
+                form.reset();
+            } else {
+                responseMsg.innerText = "Something went wrong!";
+            }
+        } catch (error) {
+            responseMsg.innerText = "Server error!";
         }
     });
-});
-document.querySelectorAll(".hidden").forEach(el=>observer.observe(el));
-
-/* Backend Connection (UNCHANGED) */
-const form = document.getElementById("contactForm");
-const responseMsg = document.getElementById("responseMsg");
-
-form.addEventListener("submit", async function(e) {
-    e.preventDefault();
-
-    const data = {
-        name: document.getElementById("name").value,
-        email: document.getElementById("email").value,
-        message: document.getElementById("message").value
-    };
-
-    try {
-        const res = await fetch("https://portfolio-backend-ovx7.onrender.com/contact", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data)
-        });
-
-        if(res.ok){
-            responseMsg.innerText="Message sent successfully!";
-            form.reset();
-        } else {
-            responseMsg.innerText="Something went wrong!";
-        }
-    } catch(error){
-        responseMsg.innerText="Server error!";
-    }
-});
 </script>
 
 </body>
