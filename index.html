@@ -23,34 +23,58 @@ body{
     overflow-x:hidden;
 }
 
-/* Animated background glow */
-body::before{
-    content:"";
-    position:fixed;
-    width:600px;
-    height:600px;
-    background:radial-gradient(circle,var(--primary),transparent 70%);
-    top:-200px;
-    left:-200px;
-    opacity:.15;
-    animation:floatGlow 8s infinite alternate ease-in-out;
-    z-index:-1;
+/* Scroll Progress Bar */
+#progressBar{
+position:fixed;
+top:0;
+left:0;
+height:4px;
+background:var(--primary);
+width:0%;
+z-index:9999;
 }
-@keyframes floatGlow{
-    from{transform:translate(0,0);}
-    to{transform:translate(200px,200px);}
+
+/* Cursor Glow */
+.cursor-glow{
+position:fixed;
+width:20px;
+height:20px;
+border-radius:50%;
+background:var(--primary);
+pointer-events:none;
+opacity:.6;
+transform:translate(-50%,-50%);
+z-index:9999;
+}
+
+/* Dark Mode Toggle */
+.theme-toggle{
+position:fixed;
+top:20px;
+right:20px;
+background:var(--primary);
+padding:8px 14px;
+border-radius:20px;
+cursor:pointer;
+z-index:999;
+}
+
+.light-mode{
+--bg-dark:#ffffff;
+--card-bg:#f4f4f4;
+--text-main:#000000;
+--text-dim:#555555;
 }
 
 .container{max-width:1000px;margin:auto;padding:0 24px;}
 
 nav{
-    padding:2rem 0;
-    display:flex;
-    justify-content:space-between;
-    position:sticky;
-    top:0;
-    backdrop-filter:blur(10px);
-    z-index:100;
+padding:2rem 0;
+display:flex;
+justify-content:space-between;
+position:sticky;
+top:0;
+backdrop-filter:blur(10px);
 }
 
 .logo{font-weight:800;font-size:1.5rem;}
@@ -60,102 +84,112 @@ h1{font-size:3.5rem;font-weight:800;}
 .typing{border-right:2px solid var(--primary);}
 
 .badge{
-    background:rgba(99,102,241,.2);
-    color:var(--primary);
-    padding:6px 18px;
-    border-radius:20px;
-    font-weight:600;
+background:rgba(99,102,241,.2);
+color:var(--primary);
+padding:6px 18px;
+border-radius:20px;
+font-weight:600;
 }
 
-section{padding:80px 0;opacity:0;transform:translateY(40px);transition:1s;}
-section.show{opacity:1;transform:translateY(0);}
+section{
+padding:80px 0;
+opacity:0;
+transform:translateY(40px);
+transition:1s;
+}
+section.show{
+opacity:1;
+transform:translateY(0);
+}
 
-h2{border-left:4px solid var(--primary);padding-left:15px;margin-bottom:30px;}
+h2{
+border-left:4px solid var(--primary);
+padding-left:15px;
+margin-bottom:30px;
+}
 
 .skills-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-    gap:20px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+gap:20px;
 }
+
 .skill-card{
-    background:var(--card-bg);
-    padding:20px;
-    border-radius:12px;
-    text-align:center;
-    transition:.4s;
-    cursor:pointer;
+background:var(--card-bg);
+padding:20px;
+border-radius:12px;
+text-align:center;
+transition:.4s;
+cursor:pointer;
 }
+
 .skill-card:hover{
-    transform:translateY(-10px) scale(1.05);
-    border:1px solid var(--primary);
-    box-shadow:0 0 20px rgba(99,102,241,.4);
+transform:translateY(-10px) scale(1.05);
+border:1px solid var(--primary);
+box-shadow:0 0 20px rgba(99,102,241,.4);
 }
 
+/* Back to Top */
+#topBtn{
+position:fixed;
+bottom:30px;
+right:30px;
+background:var(--primary);
+color:white;
+padding:12px 15px;
+border-radius:50%;
+cursor:pointer;
+display:none;
+box-shadow:0 0 15px rgba(99,102,241,.6);
+}
+
+/* Contact */
 .contact-container{
-    background:var(--card-bg);
-    padding:40px;
-    border-radius:16px;
-    max-width:600px;
-    margin:auto;
-    box-shadow:0 0 30px rgba(0,0,0,.3);
+background:var(--card-bg);
+padding:40px;
+border-radius:16px;
+max-width:600px;
+margin:auto;
 }
-
-.form-group{margin-bottom:20px;}
-label{display:block;color:var(--text-dim);margin-bottom:6px;}
 
 input,textarea{
-    width:100%;
-    padding:12px;
-    border-radius:8px;
-    border:1px solid #334155;
-    background:#0f172a;
-    color:white;
-    transition:.3s;
-}
-input:focus,textarea:focus{
-    border-color:var(--primary);
-    box-shadow:0 0 10px rgba(99,102,241,.4);
-    outline:none;
+width:100%;
+padding:12px;
+border-radius:8px;
+border:1px solid #334155;
+background:#0f172a;
+color:white;
+margin-bottom:15px;
 }
 
 .btn-submit{
-    width:100%;
-    padding:14px;
-    border:none;
-    border-radius:8px;
-    background:var(--primary);
-    color:white;
-    font-weight:600;
-    cursor:pointer;
-    transition:.3s;
-}
-.btn-submit:hover{
-    box-shadow:0 0 20px rgba(99,102,241,.6);
-    transform:scale(1.02);
+width:100%;
+padding:14px;
+border:none;
+border-radius:8px;
+background:var(--primary);
+color:white;
+font-weight:600;
+cursor:pointer;
 }
 
 .status{
-    margin-top:15px;
-    text-align:center;
-    font-weight:600;
+margin-top:15px;
+text-align:center;
+font-weight:600;
 }
-
-.spinner{
-    width:20px;
-    height:20px;
-    border:3px solid rgba(255,255,255,.3);
-    border-top:3px solid white;
-    border-radius:50%;
-    animation:spin 1s linear infinite;
-    display:inline-block;
-}
-@keyframes spin{to{transform:rotate(360deg);}}
 
 footer{text-align:center;padding:40px;color:var(--text-dim);}
 </style>
 </head>
 
 <body>
+
+<div id="progressBar"></div>
+<div class="cursor-glow"></div>
+<div class="theme-toggle">Toggle</div>
+<div id="topBtn">↑</div>
+
 <div class="container">
 
 <nav>
@@ -188,27 +222,31 @@ connecting modern frontends with scalable backends.
 </div>
 </section>
 
+<section>
+<h2>Projects</h2>
+<div class="skills-grid">
+<div class="skill-card">Portfolio Website</div>
+<div class="skill-card">Task Manager App</div>
+<div class="skill-card">AI Chat UI</div>
+</div>
+</section>
+
+<section>
+<h2>Stats</h2>
+<div class="skills-grid">
+<div class="skill-card"><h1 class="counter" data-target="15">0</h1><p>Projects</p></div>
+<div class="skill-card"><h1 class="counter" data-target="500">0</h1><p>Hours Coded</p></div>
+<div class="skill-card"><h1 class="counter" data-target="10">0</h1><p>Technologies</p></div>
+</div>
+</section>
+
 <section id="contact">
 <div class="contact-container">
 <h2 style="border:none;text-align:center">Get In Touch</h2>
-<p style="text-align:center;color:var(--text-dim)">Send me a message</p>
-
 <form id="contactForm">
-<div class="form-group">
-<label>Full Name</label>
-<input type="text" id="name" required>
-</div>
-
-<div class="form-group">
-<label>Email</label>
-<input type="email" id="email" required>
-</div>
-
-<div class="form-group">
-<label>Message</label>
-<textarea id="message" rows="5" required></textarea>
-</div>
-
+<input type="text" id="name" placeholder="Full Name" required>
+<input type="email" id="email" placeholder="Email" required>
+<textarea id="message" rows="5" placeholder="Message" required></textarea>
 <button type="submit" class="btn-submit">Send Message</button>
 <p class="status" id="status"></p>
 </form>
@@ -227,62 +265,57 @@ connecting modern frontends with scalable backends.
 const text="Albin";
 let i=0;
 function typing(){
-    if(i<text.length){
-        document.querySelector(".typing").textContent+=text.charAt(i);
-        i++;
-        setTimeout(typing,150);
-    }
-}
+if(i<text.length){
+document.querySelector(".typing").textContent+=text.charAt(i);
+i++;
+setTimeout(typing,150);
+}}
 typing();
 
 /* Scroll Reveal */
 const sections=document.querySelectorAll("section");
 window.addEventListener("scroll",()=>{
-    sections.forEach(sec=>{
-        const rect=sec.getBoundingClientRect();
-        if(rect.top<window.innerHeight-100){
-            sec.classList.add("show");
-        }
-    });
+sections.forEach(sec=>{
+if(sec.getBoundingClientRect().top<window.innerHeight-100){
+sec.classList.add("show");
+}});
 });
 
-/* Form Submission */
-const form=document.getElementById("contactForm");
-const status=document.getElementById("status");
-
-form.addEventListener("submit",async(e)=>{
-    e.preventDefault();
-    status.innerHTML='<span class="spinner"></span> Sending...';
-
-    try{
-        const res=await fetch(
-            "https://portfolio-backend-ovx7.onrender.com/api/contact",
-            {
-                method:"POST",
-                headers:{ "Content-Type":"application/json" },
-                body:JSON.stringify({
-                    name:document.getElementById("name").value.trim(),
-                    email:document.getElementById("email").value.trim(),
-                    message:document.getElementById("message").value.trim()
-                })
-            }
-        );
-
-        const data=await res.json();
-
-        if(res.ok){
-            status.style.color="lightgreen";
-            status.textContent="Message saved to cloud ✅";
-            form.reset();
-        }else{
-            throw new Error(data.message);
-        }
-
-    }catch(err){
-        status.style.color="red";
-        status.textContent="Failed to send message ❌";
-    }
+/* Counters */
+document.querySelectorAll(".counter").forEach(counter=>{
+const update=()=>{
+const target=+counter.dataset.target;
+const count=+counter.innerText;
+const inc=target/200;
+if(count<target){
+counter.innerText=Math.ceil(count+inc);
+setTimeout(update,20);
+}else{counter.innerText=target;}
+};
+update();
 });
+
+/* Back To Top */
+const topBtn=document.getElementById("topBtn");
+window.addEventListener("scroll",()=>{
+topBtn.style.display=window.scrollY>400?"block":"none";
+document.getElementById("progressBar").style.width=
+(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100+"%";
+});
+topBtn.onclick=()=>window.scrollTo({top:0,behavior:"smooth"});
+
+/* Cursor Glow */
+const glow=document.querySelector(".cursor-glow");
+document.addEventListener("mousemove",e=>{
+glow.style.left=e.pageX+"px";
+glow.style.top=e.pageY+"px";
+});
+
+/* Theme Toggle */
+document.querySelector(".theme-toggle").onclick=()=>{
+document.body.classList.toggle("light-mode");
+};
+
 </script>
 
 </body>
