@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Albin | Supreme Developer</title>
+<title>Albin | Elite Developer</title>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
@@ -11,24 +11,14 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Plus Jakarta Sans',sans-serif;
+font-family:'Plus Jakarta Sans', sans-serif;
 scroll-behavior:smooth;
 }
 
 body{
-background:#0a0f1c;
+background:#0b0f19;
 color:white;
 overflow-x:hidden;
-}
-
-/* Canvas Background */
-#particles{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-z-index:-1;
 }
 
 /* Scroll Progress */
@@ -42,6 +32,20 @@ width:0%;
 z-index:9999;
 }
 
+/* Cursor Glow */
+.cursor{
+position:fixed;
+width:20px;
+height:20px;
+border-radius:50%;
+background:rgba(147,51,234,0.6);
+pointer-events:none;
+mix-blend-mode:screen;
+transform:translate(-50%,-50%);
+transition:transform 0.1s ease;
+z-index:9999;
+}
+
 /* Navbar */
 header{
 position:fixed;
@@ -51,7 +55,7 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 backdrop-filter:blur(20px);
-background:rgba(10,15,28,0.6);
+background:rgba(11,15,25,0.6);
 z-index:1000;
 }
 
@@ -59,7 +63,6 @@ nav a{
 color:white;
 margin-left:30px;
 text-decoration:none;
-font-weight:500;
 position:relative;
 }
 
@@ -85,19 +88,20 @@ min-height:100vh;
 display:flex;
 flex-direction:column;
 justify-content:center;
-align-items:center;
+}
+
+.hero{
 text-align:center;
 }
 
-/* Hero */
-.hero h1{
-font-size:70px;
+.hero h2{
+font-size:65px;
 font-weight:800;
-background:linear-gradient(90deg,#3b82f6,#9333ea,#3b82f6);
-background-size:200% auto;
+background:linear-gradient(90deg,#3b82f6,#9333ea);
 -webkit-background-clip:text;
 color:transparent;
-animation:gradientMove 4s linear infinite;
+animation:gradientMove 4s infinite linear;
+background-size:200% auto;
 }
 
 @keyframes gradientMove{
@@ -106,48 +110,49 @@ animation:gradientMove 4s linear infinite;
 }
 
 .typing{
-margin-top:20px;
 font-size:22px;
 color:#94a3b8;
+margin-top:20px;
 }
 
-/* Skill Cards */
-.skills{
-display:flex;
-flex-wrap:wrap;
-gap:30px;
-justify-content:center;
-margin-top:40px;
-}
-
-.skill-card{
-width:220px;
-padding:30px;
-border-radius:20px;
+/* Glass Card */
+.glass{
 background:rgba(255,255,255,0.05);
-backdrop-filter:blur(20px);
+border-radius:25px;
+padding:50px;
+backdrop-filter:blur(25px);
+box-shadow:0 30px 80px rgba(0,0,0,0.6);
 transition:0.4s;
 }
 
-.skill-card:hover{
-transform:translateY(-15px) scale(1.05);
-box-shadow:0 25px 60px rgba(59,130,246,0.4);
+.glass:hover{
+transform:translateY(-10px);
 }
 
-/* Contact */
-.contact-box{
-width:100%;
-max-width:600px;
-background:rgba(255,255,255,0.05);
-padding:50px;
-border-radius:25px;
-backdrop-filter:blur(20px);
-box-shadow:0 25px 70px rgba(0,0,0,0.5);
+/* Skills */
+.skill{
+margin-bottom:30px;
 }
 
+.bar{
+height:10px;
+background:#1e293b;
+border-radius:10px;
+overflow:hidden;
+}
+
+.bar span{
+display:block;
+height:100%;
+background:linear-gradient(90deg,#3b82f6,#9333ea);
+width:0;
+transition:2s;
+}
+
+/* Inputs */
 input,textarea{
 width:100%;
-padding:15px;
+padding:16px;
 margin-bottom:20px;
 border-radius:12px;
 border:none;
@@ -156,51 +161,48 @@ color:white;
 }
 
 button{
-padding:15px 40px;
+padding:16px 40px;
 border:none;
 border-radius:12px;
 background:linear-gradient(90deg,#3b82f6,#9333ea);
 color:white;
 font-weight:600;
 cursor:pointer;
-position:relative;
-overflow:hidden;
+transition:0.3s;
 }
 
-button::after{
-content:"";
-position:absolute;
-width:0;
-height:0;
-background:rgba(255,255,255,0.3);
-border-radius:50%;
-transform:translate(-50%,-50%);
-top:50%;
-left:50%;
-transition:width 0.4s,height 0.4s;
+button:hover{
+transform:scale(1.05);
+box-shadow:0 15px 40px rgba(147,51,234,0.6);
 }
 
-button:active::after{
-width:300px;
-height:300px;
-}
-
-/* Footer */
 footer{
 text-align:center;
 padding:40px;
 color:#94a3b8;
+}
+
+/* Reveal */
+.hidden{
+opacity:0;
+transform:translateY(60px);
+transition:1s;
+}
+
+.show{
+opacity:1;
+transform:translateY(0);
 }
 </style>
 </head>
 
 <body>
 
-<canvas id="particles"></canvas>
 <div id="progress"></div>
+<div class="cursor"></div>
 
 <header>
-<h2>Albin</h2>
+<h1>Albin</h1>
 <nav>
 <a href="#home">Home</a>
 <a href="#skills">Skills</a>
@@ -208,26 +210,36 @@ color:#94a3b8;
 </nav>
 </header>
 
-<section id="home" class="hero">
-<h1>Albin</h1>
+<section id="home" class="hero hidden">
+<h2>Albin</h2>
 <div class="typing"></div>
 </section>
 
-<section id="skills">
+<section id="skills" class="hidden">
 <h2>My Skills</h2>
-<div class="skills">
-<div class="skill-card">HTML</div>
-<div class="skill-card">CSS</div>
-<div class="skill-card">JavaScript</div>
-<div class="skill-card">Node.js</div>
-<div class="skill-card">UI Design</div>
-<div class="skill-card">AI Basics</div>
+<div class="glass">
+<div class="skill">
+<p>HTML</p>
+<div class="bar"><span style="width:90%"></span></div>
+</div>
+<div class="skill">
+<p>CSS</p>
+<div class="bar"><span style="width:85%"></span></div>
+</div>
+<div class="skill">
+<p>JavaScript</p>
+<div class="bar"><span style="width:75%"></span></div>
+</div>
+<div class="skill">
+<p>Node.js</p>
+<div class="bar"><span style="width:70%"></span></div>
+</div>
 </div>
 </section>
 
-<section id="contact">
+<section id="contact" class="hidden">
 <h2>Contact Me</h2>
-<div class="contact-box">
+<div class="glass">
 <form id="contactForm">
 <input type="text" id="name" placeholder="Your Name" required>
 <input type="email" id="email" placeholder="Your Email" required>
@@ -239,16 +251,24 @@ color:#94a3b8;
 </section>
 
 <footer>
-© 2026 Albin | Supreme Portfolio
+© 2026 Albin | Elite Portfolio
 </footer>
 
 <script>
 /* Scroll Progress */
-window.onscroll=function(){
-let winScroll=document.documentElement.scrollTop;
-let height=document.documentElement.scrollHeight-document.documentElement.clientHeight;
-document.getElementById("progress").style.width=(winScroll/height)*100+"%";
+window.onscroll = function(){
+let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+let scrolled = (winScroll / height) * 100;
+document.getElementById("progress").style.width = scrolled + "%";
 };
+
+/* Cursor Glow */
+const cursor = document.querySelector(".cursor");
+document.addEventListener("mousemove", e=>{
+cursor.style.left = e.clientX+"px";
+cursor.style.top = e.clientY+"px";
+});
 
 /* Typing */
 const words=["Full Stack Developer","BCA Student","AI Enthusiast"];
@@ -266,56 +286,34 @@ setTimeout(type,100);
 }
 type();
 
-/* Particle Background */
-const canvas=document.getElementById("particles");
-const ctx=canvas.getContext("2d");
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
-
-let particles=[];
-for(let i=0;i<100;i++){
-particles.push({
-x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-r:Math.random()*2+1,
-dx:(Math.random()-0.5),
-dy:(Math.random()-0.5)
+/* Reveal */
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){entry.target.classList.add("show");}
 });
-}
-
-function animate(){
-ctx.clearRect(0,0,canvas.width,canvas.height);
-particles.forEach(p=>{
-ctx.beginPath();
-ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-ctx.fillStyle="#3b82f6";
-ctx.fill();
-p.x+=p.dx;
-p.y+=p.dy;
-if(p.x<0||p.x>canvas.width)p.dx*=-1;
-if(p.y<0||p.y>canvas.height)p.dy*=-1;
 });
-requestAnimationFrame(animate);
-}
-animate();
+document.querySelectorAll(".hidden").forEach(el=>observer.observe(el));
 
-/* BACKEND UNCHANGED */
+/* BACKEND (UNCHANGED) */
 const form=document.getElementById("contactForm");
 const responseMsg=document.getElementById("responseMsg");
 
 form.addEventListener("submit",async function(e){
 e.preventDefault();
+
 const data={
 name:document.getElementById("name").value,
 email:document.getElementById("email").value,
 message:document.getElementById("message").value
 };
+
 try{
 const res=await fetch("https://portfolio-backend-ovx7.onrender.com/contact",{
 method:"POST",
 headers:{"Content-Type":"application/json"},
 body:JSON.stringify(data)
 });
+
 if(res.ok){
 responseMsg.innerText="Message sent successfully!";
 form.reset();
