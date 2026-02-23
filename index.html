@@ -1,184 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Albin | Portfolio</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Albin | Full Stack Developer</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background: #0f172a;
-            color: white;
-        }
+<style>
+:root{
+--primary:#6366f1;
+--bg:#0f172a;
+--card:#1e293b;
+--text:#f8fafc;
+--dim:#94a3b8;
+--success:#22c55e;
+--error:#ef4444;
+}
 
-        header {
-            padding: 20px 50px;
-            background: #111827;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+font-family:'Plus Jakarta Sans',sans-serif;
+background:var(--bg);
+color:var(--text);
+}
 
-        header h1 {
-            margin: 0;
-            font-weight: 800;
-        }
+.container{max-width:1100px;margin:auto;padding:0 24px;}
 
-        nav a {
-            color: white;
-            margin-left: 20px;
-            text-decoration: none;
-            font-weight: 500;
-        }
+header{text-align:center;padding:100px 0;}
+h1{font-size:3rem;font-weight:800;}
 
-        section {
-            padding: 60px 50px;
-        }
+section{padding:80px 0;}
 
-        .hero {
-            text-align: center;
-            padding-top: 100px;
-        }
+h2{
+border-left:4px solid var(--primary);
+padding-left:15px;
+margin-bottom:30px;
+}
 
-        .hero h2 {
-            font-size: 42px;
-            margin-bottom: 20px;
-        }
+.skills-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+gap:20px;
+}
 
-        .hero p {
-            color: #94a3b8;
-            font-size: 18px;
-        }
+.skill-card{
+background:var(--card);
+padding:20px;
+border-radius:12px;
+text-align:center;
+transition:.4s;
+}
 
-        .card {
-            background: #1e293b;
-            padding: 25px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-        }
+.skill-card:hover{
+transform:translateY(-8px);
+box-shadow:0 10px 30px rgba(0,0,0,.4);
+}
 
-        input, textarea {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 15px;
-            border-radius: 8px;
-            border: none;
-            outline: none;
-        }
+.contact-box{
+background:var(--card);
+padding:40px;
+border-radius:16px;
+max-width:600px;
+margin:auto;
+}
 
-        button {
-            padding: 12px 25px;
-            border-radius: 8px;
-            border: none;
-            background: #3b82f6;
-            color: white;
-            font-weight: 600;
-            cursor: pointer;
-        }
+input,textarea{
+width:100%;
+padding:14px;
+border-radius:8px;
+border:1px solid #334155;
+background:#0f172a;
+color:white;
+margin-bottom:15px;
+transition:.3s;
+}
 
-        button:hover {
-            background: #2563eb;
-        }
+input:focus,textarea:focus{
+border:1px solid var(--primary);
+outline:none;
+}
 
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: #111827;
-            color: #94a3b8;
-        }
-    </style>
+button{
+width:100%;
+padding:14px;
+border:none;
+border-radius:8px;
+background:var(--primary);
+color:white;
+font-weight:600;
+cursor:pointer;
+transition:.3s;
+}
+
+button:disabled{
+opacity:.6;
+cursor:not-allowed;
+}
+
+.status{
+margin-top:15px;
+padding:12px;
+border-radius:8px;
+display:none;
+font-weight:600;
+text-align:center;
+}
+
+.success{background:rgba(34,197,94,.2);color:var(--success);}
+.error{background:rgba(239,68,68,.2);color:var(--error);}
+
+footer{text-align:center;padding:40px;color:var(--dim);}
+</style>
 </head>
+
 <body>
 
+<div class="container">
+
 <header>
-    <h1>Albin</h1>
-    <nav>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-    </nav>
+<h1>Hi, I'm Albin 👋</h1>
+<p style="color:var(--dim)">Full Stack Developer | MERN Stack</p>
 </header>
 
-<section class="hero">
-    <h2>Hi, I'm Albin 👋</h2>
-    <p>Aspiring Full Stack Developer | BCA Student</p>
+<section>
+<h2>Technical Skills</h2>
+<div class="skills-grid">
+<div class="skill-card">HTML5</div>
+<div class="skill-card">CSS3</div>
+<div class="skill-card">JavaScript</div>
+<div class="skill-card">React</div>
+<div class="skill-card">Node.js</div>
+<div class="skill-card">MongoDB</div>
+</div>
 </section>
 
-<section id="about">
-    <h2>About Me</h2>
-    <div class="card">
-        <p>
-            I am a passionate BCA student who loves building websites,
-            learning backend development, and exploring AI/ML.
-        </p>
-    </div>
-</section>
+<section>
+<h2>Contact Me</h2>
 
-<section id="projects">
-    <h2>Projects</h2>
-    <div class="card">
-        <h3>Portfolio Backend</h3>
-        <p>Node.js + Express backend deployed on Render.</p>
-    </div>
-</section>
+<div class="contact-box">
+<form id="contactForm">
 
-<section id="contact">
-    <h2>Contact Me</h2>
+<input type="text" id="name" name="name" placeholder="Full Name" required>
 
-    <div class="card">
-        <form id="contactForm">
-            <input type="text" id="name" placeholder="Your Name" required>
-            <input type="email" id="email" placeholder="Your Email" required>
-            <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
-            <button type="submit">Send Message</button>
-        </form>
+<input type="email" id="email" name="email" placeholder="Email Address" required>
 
-        <p id="responseMsg"></p>
-    </div>
+<textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+
+<button type="submit" id="submitBtn">Send Message</button>
+
+<div class="status" id="status"></div>
+
+</form>
+</div>
+
 </section>
 
 <footer>
-    © 2026 Albin | All Rights Reserved
+© 2026 Albin Joseph | Advanced Portfolio
 </footer>
 
+</div>
+
 <script>
-    const form = document.getElementById("contactForm");
-    const responseMsg = document.getElementById("responseMsg");
+const form = document.getElementById("contactForm");
+const statusBox = document.getElementById("status");
+const submitBtn = document.getElementById("submitBtn");
 
-    form.addEventListener("submit", async function(e) {
-        e.preventDefault();
+form.addEventListener("submit", async (e) => {
+e.preventDefault();
 
-        const data = {
-            name: document.getElementById("name").value,
-            email: document.getElementById("email").value,
-            message: document.getElementById("message").value
-        };
+const name = document.getElementById("name").value.trim();
+const email = document.getElementById("email").value.trim();
+const message = document.getElementById("message").value.trim();
 
-        try {
-            const res = await fetch("https://portfolio-backend-ovx7.onrender.com/contact", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(data)
-            });
+// Basic Validation
+if(name.length < 3){
+showStatus("Name must be at least 3 characters ❌","error");
+return;
+}
 
-            const result = await res.json();
+if(!email.includes("@")){
+showStatus("Enter valid email ❌","error");
+return;
+}
 
-            if (res.ok) {
-                responseMsg.innerText = "Message sent successfully!";
-                form.reset();
-            } else {
-                responseMsg.innerText = "Something went wrong!";
-            }
-        } catch (error) {
-            responseMsg.innerText = "Server error!";
-        }
-    });
+if(message.length < 5){
+showStatus("Message too short ❌","error");
+return;
+}
+
+// Loading state
+submitBtn.innerText="Sending...";
+submitBtn.disabled=true;
+
+try{
+const response = await fetch("https://portfolio-backend-ovx7.onrender.com/api/contact",{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({name,email,message})
+});
+
+const data = await response.json();
+
+if(data.success){
+showStatus("Message sent successfully ✅","success");
+form.reset();
+}else{
+showStatus("Failed to send ❌","error");
+}
+
+}catch(error){
+showStatus("Server error ❌","error");
+}
+
+submitBtn.innerText="Send Message";
+submitBtn.disabled=false;
+
+});
+
+function showStatus(message,type){
+statusBox.className="status "+type;
+statusBox.innerText=message;
+statusBox.style.display="block";
+}
 </script>
 
 </body>
